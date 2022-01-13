@@ -1,4 +1,45 @@
-I don't understand
+function DigitalDecipher(NumArray, key){
+    let lengthArr = num.Array.length;
 
-//A, B, C, ..., Y, Z
-//1, 2, 3, ..., 25, 26
+    let ChangeToArray = key => Number(key);
+    const KeyArr = Array.from(String(key), ChangeToArray)
+    let lenKey = KeyArr.length;
+
+    const letters = [];
+
+    rep = Math.floor(lengthArr / lenKey);
+    res = lengthArr % lenKey;
+
+    if (lengthArr <= lenKey) {
+        for (vari = 0; i < lengthArr; i++) {
+            var letter = NumArray[i] - KeyArr[i];
+            letters.push(letter);
+        }
+    }
+    else {
+        var j = 0;
+        while (j < lengthArr) {
+            for (var k = 0; k < rep; k++) {
+                for (var l = 0; l < lenKey; l++) {
+                    var letter = NumArray[j] - KeyArr[l];
+                    letters.push(letter);
+                    j++;
+                }
+            }
+            for (var m = 0; m < res; m++) {
+                var letter = NumArray[j] - KeyArr[m];
+                letters.push(letter);
+                j++;
+            }
+        }
+    }
+
+    const word = [];
+    for (var i = 0; i < letters.length; i++) {
+        let char = String.fromCharCode(letters[i] + 96);
+        word.push(char);
+    }
+    var result = word.join("")
+    return result;
+}
+console.log(digitalDecipher([20, 12, 18, 30, 21], 1939));
